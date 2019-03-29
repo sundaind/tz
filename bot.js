@@ -20,7 +20,7 @@ let guilds = {};
 client.on('ready', function () {
   console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
   clientUser = client.user;
-  clientUser.setActivity('Tes Musik', { type: 'PLAYING' });
+  clientUser.setActivity('PEMUTAR MUSIK', { type: 'STREAMING' });
 });
 
 client.on('message', function (message) {
@@ -53,7 +53,7 @@ client.on('message', function (message) {
             }
 
             guilds[message.guild.id].queueNames.push(videoinfo.title);
-            message.reply('the song: **' + videoinfo.title + '** has been added to the queue.');
+            message.reply('DIPUTAR: **' + videoinfo.title + '** Akan Segera Diputar!');
           });
         });
       } else {
@@ -67,14 +67,14 @@ client.on('message', function (message) {
             }
 
             guilds[message.guild.id].queueNames.push(videoinfo.title);
-            message.reply('the song: **' + videoinfo.title + '** is now playing!');
+            message.reply('Judul Lagu: **' + videoinfo.title + '** Sedang Diputar!');
           });
         });
       }
     } else if (member.voiceChannel === false) {
-      message.reply('you have to be in a voice channel to play music!');
+      message.reply('Kamu Harus Dalam Room Voice Untuk Memutar Musik!');
     } else {
-      message.reply('you have to be in a voice channel to play music!');
+      message.reply('Kamu Harus Dalam Room Voice Untuk Memutar Musik!');
     }
   } else if (msg.startsWith(prefix + 'skip')) {
     if (guilds[message.guild.id].skippers.indexOf(message.author.id) === -1) {
@@ -83,7 +83,7 @@ client.on('message', function (message) {
       if (guilds[message.guild.id].skipReq >=
       Math.ceil((guilds[message.guild.id].voiceChannel.members.size - 1) / 2)) {
         skipMusic(message);
-        message.reply('your skip request has been accepted. The current song will be skipped!');
+        message.reply('Lagu Di Skip...!');
       } else {
         message.reply('your skip request has been accepted. You need **' +
         (Math.ceil((guilds[message.guild.id].voiceChannel.members.size - 1) / 2) -
